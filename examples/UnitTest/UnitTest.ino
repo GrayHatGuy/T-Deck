@@ -57,7 +57,7 @@ LV_IMG_DECLARE(mouse_cursor_icon); /*Declare the image file.*/
 TouchLib touch(Wire, BOARD_I2C_SDA, BOARD_I2C_SCL, GT911_SLAVE_ADDRESS1);
 
 #ifdef USING_SX1262
-#define RADIO_FREQ          868.0
+#define RADIO_FREQ          915.0
 SX1262 radio = new Module(RADIO_CS_PIN, RADIO_DIO1_PIN, RADIO_RST_PIN, RADIO_BUSY_PIN);
 #else
 #define RADIO_FREQ          433.0
@@ -426,6 +426,7 @@ void loopRadio()
                     snprintf(buf, 256, "RX:%s RSSI:%.2f SNR:%.2f\n", recv.c_str(), radio.getRSSI(), radio.getSNR());
 
                     lv_textarea_add_text(radio_ta, buf);
+                    lv_textarea_add_text(radio_ta, "AF");
 
 
                 } else if (state ==  RADIOLIB_ERR_CRC_MISMATCH) {
@@ -1111,6 +1112,44 @@ void handleEvent(AceButton * /* button */, uint8_t eventType,
     }
 }
 
+void channel_check() {
+  //Serial.begin(9600);
+
+  /*
+  initialize SX1262 with default settings
+  Serial.print(F("[SX1262] Initializing ... "));
+  int state = radio.begin();
+  if (state == RADIOLIB_ERR_NONE) {
+    Serial.println(F("success!"));
+  } else {
+    Serial.print(F("failed, code "));
+    Serial.println(state);
+    while (true);
+  } 
+  */
+  Serial.print(F("[SX1262] Scanning channel for LoRa transmission ... "));
+
+  // start scanning current channel
+  int state = radio.scanChannel();
+
+  if (state == RADIOLIB_LORA_DETECTED) {
+    // LoRa preamble was detected
+    Serial.println(F("detected!"));
+
+  } else if (state == RADIOLIB_CHANNEL_FREE) {
+    // no preamble was detected, channel is free
+    Serial.println(F("channel is free!"));
+
+  } else {
+    // some other error occurred
+    Serial.print(F("failed, code "));
+    Serial.println(state);
+
+  }
+
+  // wait 100 ms before new scan
+  //delay(100);
+}
 
 void setup()
 {
