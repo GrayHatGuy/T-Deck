@@ -46,10 +46,12 @@ using namespace ace_button;
 #define I2S_CH                          I2S_NUM_1
 
 LV_IMG_DECLARE(image);
+/*
 LV_IMG_DECLARE(image1);
 LV_IMG_DECLARE(image2);
 LV_IMG_DECLARE(image3);
 LV_IMG_DECLARE(image4);
+*/
 LV_IMG_DECLARE(mouse_cursor_icon); /*Declare the image file.*/
 
 
@@ -500,9 +502,9 @@ void factory_ui(lv_obj_t *parent)
     tv = lv_tabview_create(parent, LV_DIR_TOP, 50);
     lv_obj_add_style(tv, &bg_style, LV_PART_MAIN);
 
-    lv_obj_t *t1 = lv_tabview_add_tab(tv, "Hardware");
+    lv_obj_t *t1 = lv_tabview_add_tab(tv, "POST");
     lv_obj_t *t2 = lv_tabview_add_tab(tv, "Radio");
-    lv_obj_t *t3 = lv_tabview_add_tab(tv, "Keyboard");
+    lv_obj_t *t3 = lv_tabview_add_tab(tv, "KB");
     lv_obj_t *t4 = lv_tabview_add_tab(tv, "TBD");  //add TBD
 
     static lv_style_t ta_bg_style;
@@ -669,7 +671,7 @@ void initBoard()
     lv_obj_t *cont = lv_obj_create(lv_scr_act());
     lv_obj_set_size(cont, lv_disp_get_hor_res(NULL), lv_disp_get_ver_res(NULL));
     lv_obj_set_scroll_dir(cont, LV_DIR_VER);
-
+/*
     lv_obj_t *label;
     label = lv_label_create(cont);
     lv_label_set_long_mode(label, LV_LABEL_LONG_SCROLL);
@@ -734,7 +736,7 @@ void initBoard()
 
     lv_obj_del(label);
     lv_obj_del(img);
-
+*/
 
     factory_ui(lv_scr_act());
 
