@@ -668,6 +668,7 @@ void initBoard()
 
     static uint8_t invertFlag[3] = {0, 1, 2};
     lv_obj_t *btn = lv_btn_create(cont);
+
     lv_obj_set_size(btn, LV_PCT(50), LV_PCT(40));
     lv_obj_t *btn_label = lv_label_create(btn);
     lv_label_set_text(btn_label, "Invert ON");
@@ -692,7 +693,7 @@ void initBoard()
     lv_obj_add_event_cb(btn, disp_inver_event, LV_EVENT_ALL, &invertFlag[2]);
     lv_obj_align_to(btn, label, LV_ALIGN_OUT_BOTTOM_MID, -10, LV_PCT(40));
 
-    clicked = false;
+    clicked = true;
     while (!clicked) {
         lv_task_handler(); delay(5);
     }
@@ -700,12 +701,12 @@ void initBoard()
     lv_obj_del(cont);
 
     // test image
-    const lv_img_dsc_t *img_src[4] = {&image1, &image4}; //,&image2, &image3, &image4};
+    const lv_img_dsc_t *img_src[4] = {&image1, &image2, &image3, &image4};
     lv_obj_t *img = lv_img_create(lv_scr_act());
     label = lv_label_create(lv_scr_act());
     lv_label_set_long_mode(label, LV_LABEL_LONG_SCROLL);
     lv_obj_set_width(label, 320);
-    lv_label_set_text(label, "Press the key of the trackball in the middle of the board to enter the next picture");
+    lv_label_set_text(label, "Center cursor and press enter to continue");
     lv_obj_align(label, LV_ALIGN_TOP_LEFT, 0, 0);
 
     clicked = false;
