@@ -46,12 +46,6 @@ using namespace ace_button;
 #define I2S_CH                          I2S_NUM_1
 
 LV_IMG_DECLARE(image);
-/*
-LV_IMG_DECLARE(image1);
-LV_IMG_DECLARE(image2);
-LV_IMG_DECLARE(image3);
-LV_IMG_DECLARE(image4);
-*/
 LV_IMG_DECLARE(mouse_cursor_icon); /*Declare the image file.*/
 
 
@@ -671,72 +665,6 @@ void initBoard()
     lv_obj_t *cont = lv_obj_create(lv_scr_act());
     lv_obj_set_size(cont, lv_disp_get_hor_res(NULL), lv_disp_get_ver_res(NULL));
     lv_obj_set_scroll_dir(cont, LV_DIR_VER);
-/*
-    lv_obj_t *label;
-    label = lv_label_create(cont);
-    lv_label_set_long_mode(label, LV_LABEL_LONG_SCROLL);
-    lv_obj_set_width(label, 320);
-    lv_label_set_text(label, "The button is blue, if the button is not blue, please press \"Invert OFF\" or \"Invert ON\" Button");
-    lv_obj_align(label, LV_ALIGN_TOP_LEFT, 0, 10);
-
-    static uint8_t invertFlag[3] = {0, 1, 2};
-    lv_obj_t *btn = lv_btn_create(cont);
-
-    lv_obj_set_size(btn, LV_PCT(50), LV_PCT(40));
-    lv_obj_t *btn_label = lv_label_create(btn);
-    lv_label_set_text(btn_label, "Invert ON");
-    lv_obj_center(btn_label);
-    lv_obj_add_event_cb(btn, disp_inver_event, LV_EVENT_ALL, &invertFlag[0]);
-    lv_obj_align_to(btn, label, LV_ALIGN_OUT_BOTTOM_LEFT, 5, 10);
-
-    btn = lv_btn_create(cont);
-    lv_obj_set_size(btn, LV_PCT(50), LV_PCT(40));
-    btn_label = lv_label_create(btn);
-    lv_label_set_text(btn_label, "Invert OFF");
-    lv_obj_center(btn_label);
-    lv_obj_add_event_cb(btn, disp_inver_event, LV_EVENT_ALL, &invertFlag[1]);
-    lv_obj_align_to(btn, label, LV_ALIGN_OUT_BOTTOM_RIGHT, -20, 10);
-
-
-    btn = lv_btn_create(cont);
-    lv_obj_set_size(btn, LV_PCT(50), LV_PCT(20));
-    btn_label = lv_label_create(btn);
-    lv_label_set_text(btn_label, "OK");
-    lv_obj_center(btn_label);
-    lv_obj_add_event_cb(btn, disp_inver_event, LV_EVENT_ALL, &invertFlag[2]);
-    lv_obj_align_to(btn, label, LV_ALIGN_OUT_BOTTOM_MID, -10, LV_PCT(40));
-
-    clicked = true;
-    while (!clicked) {
-        lv_task_handler(); delay(5);
-    }
-
-    lv_obj_del(cont);
-
-    // test image
-    const lv_img_dsc_t *img_src[4] = {&image1, &image2, &image3, &image4};
-    lv_obj_t *img = lv_img_create(lv_scr_act());
-    label = lv_label_create(lv_scr_act());
-    lv_label_set_long_mode(label, LV_LABEL_LONG_SCROLL);
-    lv_obj_set_width(label, 320);
-    lv_label_set_text(label, "Center cursor and press enter to continue");
-    lv_obj_align(label, LV_ALIGN_TOP_LEFT, 0, 0);
-
-    clicked = false;
-    int i = 3;
-    while (i > 0) {
-        lv_img_set_src(img, (void *)(img_src[i]));
-        while (!clicked) {
-            lv_task_handler(); delay(5);
-            button.check();
-        }
-        i--;
-        clicked = false;
-    }
-
-    lv_obj_del(label);
-    lv_obj_del(img);
-*/
 
     factory_ui(lv_scr_act());
 
