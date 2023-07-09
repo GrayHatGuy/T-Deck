@@ -377,7 +377,7 @@ void loopRadio()
                     // enable interrupt service routine
                     enableInterrupt = true;
                 }
-                // snprintf(dispSenderBuff, sizeof(dispSenderBuff), "TX: %u", sendCount);
+                // sprnintf(dispSenderBuff, sizeof(dispSenderBuff), "TX: %u", sendCount);
 
                 runningMillis = millis();
             }
@@ -439,8 +439,9 @@ void loopRadio()
                     Serial.println(state);
                 }
                 // put module back to listen mode
+     
                 radio.startReceive();
-
+                
                 // we're ready to receive more packets,
                 // enable interrupt service routine
                 enableInterrupt = true;
@@ -502,7 +503,7 @@ void factory_ui(lv_obj_t *parent)
     lv_obj_t *t1 = lv_tabview_add_tab(tv, "Hardware");
     lv_obj_t *t2 = lv_tabview_add_tab(tv, "Radio");
     lv_obj_t *t3 = lv_tabview_add_tab(tv, "Keyboard");
-
+    lv_obj_t *t4 = lv_tabview_add_tab(tv, "TBD");  //add TBD
 
     static lv_style_t ta_bg_style;
     lv_style_init(&ta_bg_style);
@@ -555,6 +556,16 @@ void factory_ui(lv_obj_t *parent)
     lv_textarea_set_max_length(kb_ta, 512);
     lv_obj_align(kb_ta, LV_ALIGN_TOP_MID, 0, 0);
     lv_obj_add_style(kb_ta, &ta_bg_style, LV_PART_ANY);
+
+    lv_obj_t *tbd_ta = lv_textarea_create(t4);
+    lv_textarea_set_cursor_click_pos(tbd_ta, false);
+    lv_textarea_set_cursor_pos(tbd_ta, 0);
+    lv_textarea_set_text_selection(kb_ta, false);
+    lv_obj_set_size(tbd_ta, LV_HOR_RES, LV_VER_RES / 2);
+    lv_textarea_set_text(tbd_ta, "");
+    lv_textarea_set_max_length(tbd_ta, 512);
+    lv_obj_align(tbd_ta, LV_ALIGN_TOP_MID, 0, 0);
+    lv_obj_add_style(tbd_ta, &ta_bg_style, LV_PART_ANY);
 
 }
 
@@ -1128,19 +1139,22 @@ void channel_check() {
     while (true);
   } 
   */
+  //char chbuf[256];
   Serial.print(F("[SX1262] Scanning channel for LoRa transmission ... "));
 
   // start scanning current channel
   int state = radio.scanChannel();
-
+  string result;
   if (state == RADIOLIB_LORA_DETECTED) {
     // LoRa preamble was detected
+    //result = String(F("detected!"));
     Serial.println(F("detected!"));
 
   } else if (state == RADIOLIB_CHANNEL_FREE) {
     // no preamble was detected, channel is free
-    Serial.println(F("channel is free!"));
-
+    
+    //
+    Serial.println(F("channel is free!"));;
   } else {
     // some other error occurred
     Serial.print(F("failed, code "));
@@ -1148,6 +1162,8 @@ void channel_check() {
 
   }
 
+    //snprintf(chbuf, 256, String(state, result));
+    //lv_textarea_add_text(radio_ta, result);
   // wait 100 ms before new scan
   //delay(100);
 }
@@ -1162,6 +1178,7 @@ void loop()
 {
     button.check();
     loopRadio();
+    //channel_check();
     lv_task_handler();
     delay(5);
 }
