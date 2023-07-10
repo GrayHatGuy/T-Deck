@@ -666,6 +666,38 @@ void initBoard()
     lv_obj_set_size(cont, lv_disp_get_hor_res(NULL), lv_disp_get_ver_res(NULL));
     lv_obj_set_scroll_dir(cont, LV_DIR_VER);
 
+    
+    lv_obj_t *label;
+    
+
+    lv_obj_del(cont);
+
+    // test image
+    const lv_img_dsc_t *img_src[4] = {&image, &image, &image, &image};
+    lv_obj_t *img = lv_img_create(lv_scr_act());
+    label = lv_label_create(lv_scr_act());
+    lv_label_set_long_mode(label, LV_LABEL_LONG_SCROLL);
+    lv_obj_set_width(label, 320);
+    lv_label_set_text(label, "click hat");
+    lv_obj_align(label, LV_ALIGN_CENTER, 0, 0);
+
+    clicked = false;
+    int i = 1;
+   
+        lv_img_set_src(img, (void *)(img_src[i]));
+        lv_obj_align(img, LV_ALIGN_CENTER, 0, 0);
+        while (!clicked) {
+            lv_task_handler(); delay(2);
+            button.check();
+        }
+        i--;
+        clicked = false;
+    
+
+    lv_obj_del(label);
+    lv_obj_del(img);
+
+
     factory_ui(lv_scr_act());
 
 

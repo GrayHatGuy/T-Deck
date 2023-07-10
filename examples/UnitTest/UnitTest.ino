@@ -700,7 +700,7 @@ void initBoard()
     lv_obj_del(cont);
 
     // test image
-    const lv_img_dsc_t *img_src[4] = {&image1, &image4}; //,&image2, &image3, &image4};
+    const lv_img_dsc_t *img_src[4] = {&image1, &image4, &image2, &image3, &image4};
     lv_obj_t *img = lv_img_create(lv_scr_act());
     label = lv_label_create(lv_scr_act());
     lv_label_set_long_mode(label, LV_LABEL_LONG_SCROLL);
