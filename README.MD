@@ -13,7 +13,7 @@ examples
 ├─Keyboard_T_Deck_Master # T-Deck read from keyboard
 ├─Microphone             # Noise detection  
 ├─Touchpad               # Read touch coordinates 
-|-ESP32Berry             # The Blackberry Project - https://github.com/0015/ESP32Berry   
+├─ESP32Berry             # The Blackberry Project - https://github.com/0015/ESP32Berry   
 └─UnitTest               # Factory hardware unit testing 
 
 
