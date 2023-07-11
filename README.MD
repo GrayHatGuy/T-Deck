@@ -14,6 +14,7 @@ examples
 ├─Microphone             # Noise detection  
 ├─Touchpad               # Read touch coordinates 
 ├─ESP32Berry             # The Blackberry Project - https://github.com/0015/ESP32Berry   
+├─t_deckrf               # SubG and LoRa utilities (in process)
 └─UnitTest               # Factory hardware unit testing 
 
 
