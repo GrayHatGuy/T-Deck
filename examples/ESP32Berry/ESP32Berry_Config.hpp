@@ -23,7 +23,7 @@ https://github.com/lvgl/lvgl
 #include "utilities.h"
 
 // Set User Name For Display
-#define USER_NAME "Eric" 
+#define USER_NAME "ghgBB" 
 
 #define WIFI_SCAN_ITER 5
 #define WIFI_SSID_PW_DELIMITER "^_"
